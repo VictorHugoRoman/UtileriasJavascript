@@ -1,0 +1,23 @@
+//PROGRAMACION FUNCIONAL EN JAVASCRIPT
+//Como usar Map, Filter y Reduce en JavaScript
+
+//guardaremos objetos en estos arreglos
+let datos = []; let datosFiltrados = [];
+//llenamos el arreglo datos para recorrerlo
+datos.push( { id: 1, text: "Materiales", spriteCssClass: "" });
+datos.push( { id: 2, text: "Herramienta", spriteCssClass: "" });
+datos.push({ id: 3, text: "Fletes y Acarreos", spriteCssClass: "" });
+
+//*map está definido en Array.prototype
+
+//index y array podemos quitarlos si no los ocupamos
+[].map.call(datos,function(item, index, array){
+	if(item.id==1 || item.id==2)
+		res.push({id:item.id, text:item.text});
+    //o return {id:item.id, text:item.text}
+});
+//tambien podemos ejecutar map directamente del array
+datos.map(function(item){
+	if(item.id==1 || item.id==2)
+		return {id:item.id, text:item.text}
+});
