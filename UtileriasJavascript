@@ -8,7 +8,7 @@ datos.push( { id: 1, text: "Materiales", spriteCssClass: "" });
 datos.push( { id: 2, text: "Herramienta", spriteCssClass: "" });
 datos.push({ id: 3, text: "Fletes y Acarreos", spriteCssClass: "" });
 
-//*map está definido en Array.prototype
+//*map está definido en Array.prototype, retorna como resultado un array
 
 //index y array podemos quitarlos si no los ocupamos
 [].map.call(datos,function(item, index, array){
