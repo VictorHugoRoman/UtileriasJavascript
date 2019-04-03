@@ -21,3 +21,32 @@ datos.map(function(item){
 	if(item.id==1 || item.id==2)
 		return {id:item.id, text:item.text}
 });
+
+//esta funcion retorna los id (items) checados en cada lista sin que c repitan,
+//a lista puede contener el mismo id
+ function ObtenerTAPObra() {
+	//array de array de enteros (los elementos checados de cada lista)
+        let tiposArtChK = [];//id de los elementos checados
+        let tiposArtFiltrado = [];//id de los elementos filtrados (no repetidos)
+	//variable para buscar id repetido
+        let idBuscar = 0;
+        let tvMat = $("#tvMateriales").data("kendoTreeView");
+        let tvMaq = $("#tvMaquinaria").data("kendoTreeView");
+        let tvAdmin = $("#tvAdministrativo").data("kendoTreeView");
+	//obtenemos los items checados en cada lista
+        tiposArtChK.push(tvMat.dataSource.view()[0].items.filter(item => item.checked));
+        tiposArtChK.push(tvMaq.dataSource.view()[0].items.filter(item => item.checked));
+        tiposArtChK.push(tvAdmin.dataSource.view()[0].items.filter(item => item.checked));
+	//Creamos una funcion arrow que buscara si un id esta repetido
+        const BuscarTA = (...arrayToReview) => arrayToReview.filter(ID => ID == idBuscar);
+	//hacemos un bucle anidado de los elementos checados de cada lista
+        for (let arrayItems of tiposArtChK)//for para acceder a cada array de elementos
+            if (arrayItems.length > 0)
+                for (let item of arrayItems) {//for para acceder a los elementos del array
+                    idBuscar = item.id;//como la funcion BuscarTA buscar por el valor de la variable idBuscar, asignamos valor a dicha variable
+                    if (BuscarTA(...tiposArtFiltrado).length <= 0) {//ejecutamos la funcion BuscarTA, le enviamos como argumento el array de los items que vamos filtrando que es donde estará buscando 
+                        tiposArtFiltrado.push(idBuscar);
+                    }
+                }
+        return tiposArtFiltrado;
+    }
